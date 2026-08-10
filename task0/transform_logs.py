@@ -34,7 +34,7 @@ def transform_logs(text:str)->str:
         return f"{ordinal(d)} {months[mo-1]} {y}, {h}:{mi:02d} {period}"
 
     def tag_err(m):
-        return f"🛑ERROR🛑 {random.choice(remarks)}"
+        return f"🛑ERROR {random.choice(remarks)}"
 
     err=warn=success=hidden=done=0
     out=[]
@@ -56,13 +56,13 @@ def transform_logs(text:str)->str:
         line=re.sub(r'\bERROR\b',tag_err,line)
 
         warn+=len(re.findall(r'\bWARNING\b',line))
-        line=re.sub(r'\bWARNING\b','⚠️ WARNING',line)
+        line=re.sub(r'\bWARNING\b','WARNING',line)
 
         success+=len(re.findall(r'\bSUCCESS\b',line))
-        line=re.sub(r'\bSUCCESS\b','✅ SUCCESS',line)
+        line=re.sub(r'\bSUCCESS\b','SUCCESS',line)
 
         success+=len(re.findall(r'\bOK\b',line))
-        line=re.sub(r'\bOK\b','✅ OK',line)
+        line=re.sub(r'\bOK\b','OK',line)
 
         out.append(line)
 
